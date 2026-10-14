@@ -1,0 +1,502 @@
+/* static/css/style.css */
+
+:root {
+    /* --- Your Custom Palette --- */
+    --color-bg-deep: #031D44;
+    --color-surface: #04395E;
+    --color-eco-green: #70A288;
+    --color-sand: #DAB785;
+    --color-terracotta: #D5896F;
+
+    /* Text Colors derived for contrast */
+    --text-light: #F8FAFC;
+    /* Almost white for main text */
+    --text-muted: #DAB785;
+    /* Using your Sand color for secondary text */
+}
+
+/* Global Reset & Body */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg-deep);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    border-bottom: 2px solid var(--color-eco-green);
+    transition: all 0.3s ease;
+}
+
+/* Glassmorphism for Navbar */
+.navbar-glass {
+    background: rgba(4, 57, 94, 0.85) !important;
+    /* Surface color with transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(112, 162, 136, 0.4);
+}
+
+.brand-glow {
+    text-shadow: 0 0 12px rgba(112, 162, 136, 0.6);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: var(--text-light) !important;
+    letter-spacing: -0.5px;
+}
+
+.navbar-brand span {
+    color: var(--color-eco-green);
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-left: 1rem;
+}
+
+/* Animated Underline for Nav Links */
+.nav-link-animated {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-link-animated::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 2px;
+    left: 1rem;
+    /* Offset for the margin-left */
+    background-color: var(--color-eco-green);
+    transition: width 0.3s ease;
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated.active::after {
+    width: calc(100% - 1rem);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-eco-green) !important;
+}
+
+/* Custom Buttons */
+.btn-primary-custom {
+    background-color: var(--color-eco-green);
+    color: var(--color-bg-deep);
+    font-weight: 600;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--text-light);
+    color: var(--color-bg-deep);
+    transform: translateY(-2px);
+}
+
+/* Glow Effect for Buttons */
+.btn-glow {
+    box-shadow: 0 4px 15px rgba(112, 162, 136, 0.35);
+}
+
+.btn-glow:hover {
+    box-shadow: 0 6px 20px rgba(112, 162, 136, 0.55);
+}
+
+/* Cards & Surfaces (for your dashboard) */
+.custom-card {
+    background-color: var(--color-surface);
+    border: 1px solid rgba(218, 183, 133, 0.2);
+    /* Faint sand border */
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: var(--text-light);
+}
+
+/* =========================================
+   FOOTER STYLING & ANIMATIONS
+   ========================================= */
+
+.footer-custom {
+    background-color: var(--color-surface);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 1. Top Border Glow / Scanline Animation */
+.footer-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-eco-green), transparent);
+    animation: scanline 4s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+/* Utilities for Footer Text */
+.text-eco-green {
+    color: var(--color-eco-green) !important;
+}
+
+.text-muted-custom {
+    color: var(--color-sand);
+    opacity: 0.7;
+}
+
+.footer-divider {
+    border-color: rgba(218, 183, 133, 0.1);
+    /* Faint sand color for the line */
+}
+
+/* 2. Hover Animations for Links */
+.footer-links {
+    padding-left: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--color-eco-green);
+    transform: translateX(6px);
+    /* Glisează fin spre dreapta */
+}
+
+/* 3. Pulsing ML Engine Indicator */
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-eco-green);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--color-eco-green);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(112, 162, 136, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(112, 162, 136, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(112, 162, 136, 0);
+    }
+}
+
+/* Custom Outlined Button for GitHub */
+.btn-outline-eco {
+    color: var(--color-eco-green);
+    border: 1px solid var(--color-eco-green);
+    background-color: transparent;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-outline-eco:hover {
+    background-color: var(--color-eco-green);
+    color: var(--color-bg-deep);
+    border-color: var(--color-eco-green);
+}
+
+.btn-outline-sand {
+    color: var(--text-light);
+    border: 1px solid rgba(218, 183, 133, 0.4);
+    background-color: transparent;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-outline-sand:hover {
+    background-color: var(--color-sand);
+    color: var(--color-bg-deep);
+    border-color: var(--color-sand);
+}
+
+/* =========================================
+   TYPOGRAPHY & COMPONENT UTILITIES
+   ========================================= */
+
+.text-md {
+    font-size: 0.9rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-xs {
+    font-size: 0.85rem;
+}
+
+.tracking-tight {
+    letter-spacing: -0.5px;
+}
+
+.btn-disabled-custom {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.badge-eco {
+    border-color: var(--color-eco-green) !important;
+    background-color: var(--color-bg-deep);
+}
+
+/* Feature Cards Hover Effect */
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(218, 183, 133, 0.1);
+    /* Faint sand border */
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(112, 162, 136, 0.1);
+    border-color: rgba(112, 162, 136, 0.4);
+    /* Glows green on hover */
+}
+
+/* Color Utilities */
+.text-terracotta {
+    color: var(--color-terracotta) !important;
+}
+
+.bg-terracotta {
+    background-color: var(--color-terracotta) !important;
+}
+
+.bg-eco-green {
+    background-color: var(--color-eco-green) !important;
+}
+
+.progress-glass {
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Custom Range Sliders */
+.custom-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+}
+
+.custom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-eco-green);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 0 10px rgba(112, 162, 136, 0.5);
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #fff;
+}
+
+/* Custom Scrollbar for Data Tables */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(112, 162, 136, 0.3);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(112, 162, 136, 0.6);
+}
+
+/* Stiluri pentru tabelele Pandas injectate automat */
+.dataframe {
+    width: 100%;
+    color: white;
+    font-size: 0.875rem;
+    text-align: left;
+}
+
+.dataframe th {
+    color: var(--color-eco-green);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+}
+
+.dataframe td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* =========================================
+   DASHBOARD SPECIFIC CLASSES
+   ========================================= */
+
+.dashboard-map-card {
+    border-radius: 12px;
+    min-height: 650px;
+    border: 1px solid rgba(112, 162, 136, 0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 991px) {
+    .dashboard-map-card {
+        min-height: 400px;
+    }
+}
+
+.dashboard-weights-card {
+    border-radius: 12px; 
+    border: 1px solid rgba(218, 183, 133, 0.2);
+}
+
+.insights-card {
+    border-radius: 12px;
+    border: 1px solid rgba(112, 162, 136, 0.2);
+    background: linear-gradient(145deg, rgba(4, 57, 94, 0.5), rgba(3, 29, 68, 0.5));
+}
+
+/* Region Tabs Styling */
+.region-tab {
+    color: var(--text-muted);
+}
+.region-tab:hover {
+    color: white;
+}
+.region-tab.active-tab {
+    background-color: var(--color-eco-green);
+    color: #04395E !important;
+    box-shadow: 0 0 15px rgba(112, 162, 136, 0.4);
+}
+
+.region-tabs-container {
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.map-container-wrapper {
+    height: 60%;
+    background-color: #0d1117;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.table-container-wrapper {
+    background-color: var(--color-surface);
+}
+
+.live-grid-sync-badge {
+    background-color: rgba(112, 162, 136, 0.1);
+    border: 1px solid rgba(112, 162, 136, 0.2);
+}
+
+.total-weight-badge {
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--color-eco-green);
+}
+
+/* Custom Table Styling */
+.table-custom {
+    background-color: transparent !important;
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-light);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin-top: 10px;
+}
+
+.table-custom thead th {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    font-weight: 600;
+    border-top: none;
+    text-align: center !important;
+}
+
+.table-custom tbody tr {
+    background-color: rgba(255, 255, 255, 0.03);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table-custom tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    transform: translateY(-1px);
+}
+
+.table-custom tbody td {
+    padding: 14px 16px;
+    vertical-align: middle;
+    border: none;
+    color: var(--text-light);
+    text-align: center !important;
+}
+
+.table-custom tbody td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-weight: 700;
+    color: var(--color-sand);
+}
+
+.table-custom tbody td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

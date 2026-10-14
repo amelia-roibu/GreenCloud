@@ -1,0 +1,132 @@
+{% load static %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GreenCloud | Net Zero Optimizer{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg py-3 fixed-top navbar-glass">
+        <div class="container">
+            <a class="navbar-brand brand-glow fw-bold tracking-tight" href="{% url 'home' %}">
+                Green<span class="text-eco-green">Cloud</span>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--text-light)" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                {% url 'home' as url_home %}
+                {% url 'cooling_analyzer' as url_solutions %}
+                {% url 'infrastructure_map' as url_infra %}
+
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-animated {% if request.path == url_home %}active{% endif %} text-sm fw-semibold tracking-tight" href="{{ url_home }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-animated {% if request.path == url_solutions %}active{% endif %} text-sm fw-semibold tracking-tight" href="{{ url_solutions }}">Solutions</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-animated {% if request.path == url_infra %}active{% endif %} text-sm fw-semibold tracking-tight" href="{{ url_infra }}">Infrastructure Map</a>
+                    </li>
+
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    <a href="{% url 'login' %}" class="nav-link text-sm fw-semibold tracking-tight d-none d-lg-block">Log In</a>
+
+                    <a href="{% url 'login' %}" class="btn btn-primary-custom btn-glow px-4 py-2 text-sm fw-semibold rounded-2 d-inline-flex align-items-center">
+                        Enterprise Portal
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ms-2" viewBox="0 0 16 16">
+                            <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                            <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pt-5 mt-5 mb-5 flex-grow-1">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer-custom mt-auto">
+        <div class="container py-5">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white fw-bold mb-3 tracking-tight">Green<span class="text-eco-green">Cloud</span></h5>
+                    <p class="text-muted-custom mb-4 text-md">
+                        Measuring, reducing, and making visible the environmental footprint of cloud workloads through efficient computing.
+                    </p>
+                    <div class="d-flex align-items-center">
+                        <span class="status-indicator"></span>
+                        <span class="ms-2 text-light text-xs fw-semibold">System Status: Ready</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white fw-bold mb-3 text-uppercase text-xs">Navigation</h6>
+                    <ul class="list-unstyled footer-links text-sm">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'cooling_analyzer' %}">Solutions</a></li>
+                        <li><a href="{% url 'infrastructure_map' %}">Infrastructure Map</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white fw-bold mb-3 text-uppercase text-xs">Powered By</h6>
+                    <ul class="list-unstyled text-muted-custom text-md">
+                        <li class="mb-2">&bull; Python & Django</li>
+                        <li class="mb-2">&bull; Scikit-Learn</li>
+                        <li class="mb-2">&bull; Folium Maps</li>
+                        <li class="mb-2">&bull; Bootstrap 5</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white fw-bold mb-3 text-uppercase text-xs">Project Code</h6>
+                    <p class="text-muted-custom mb-3 text-xs">Codebase hosted on the official organizers' repository.</p>
+
+                    <button class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2 btn-disabled-custom" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                        </svg>
+                        Private Repository
+                    </button>
+                </div>
+            </div>
+
+            <hr class="footer-divider my-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <p class="mb-0 text-muted-custom text-sm">
+                    &copy; 2026 Net Zero Mission &middot; Team Hackathon Project
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
